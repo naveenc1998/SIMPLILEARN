@@ -1,0 +1,18 @@
+package java1;
+import java.util.Arrays;
+public class SearchString {
+
+	  public static void main(String[] args){
+
+	    String[] strings = {"ramesh@gmail.com","suresh@gmail.com","ravi@gmail.com","sai@gmail.com","vijay@gmail.com"};
+	    String toFind= "suresh@gmail.com";
+
+	    boolean found = Arrays.stream(strings).anyMatch(t -> t.equals(toFind));
+
+	    if(found)
+	      System.out.println(toFind + " is found.");
+	    else
+	      System.out.println(toFind + " is not found.");
+	  }
+	
+}
