@@ -1,18 +1,35 @@
-package java1;
-import java.util.Arrays;
-public class SearchString {
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-	  public static void main(String[] args){
+public class EmailId {
 
-	    String[] strings = {"ramesh@gmail.com","suresh@gmail.com","ravi@gmail.com","sai@gmail.com","vijay@gmail.com"};
-	    String toFind= "suresh@gmail.com";
+	public static void main(String[] args) {
+		
+		
+		String[] listOfEmails= {"vijaynayak@gmail.com","nayakv715@gmail.com"};
+		Scanner input= new Scanner(System.in);
+		System.out.println("please enter email id");
+		String sc =input.nextLine();
+		boolean a=emailVerification(sc, listOfEmails);
+		output(a);
+	}
+static boolean emailVerification(String email,String[] listOfEmails) {
+	boolean flag=false;
+	Pattern p = Pattern.compile(email);
+	for(int i=0; i<listOfEmails.length; i++) {
+		Matcher m =p.matcher(listOfEmails[i]);
+		if(m.find()) {
+			flag = true;
+		}
+	}
+	return flag;
+}
 
-	    boolean found = Arrays.stream(strings).anyMatch(t -> t.equals(toFind));
-
-	    if(found)
-	      System.out.println(toFind + " is found.");
-	    else
-	      System.out.println(toFind + " is not found.");
-	  }
-	
+static void output(boolean result) {
+	if(result)
+		System.out.println("Email verification passed");
+	else
+		System.out.println("Email verification failed");
+}
 }
